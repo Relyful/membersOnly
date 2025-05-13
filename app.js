@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const indexRouter = require('./routers/indexRouter');
 
 require('dotenv').config()
 
@@ -15,9 +16,7 @@ app.set("view engine", "ejs");
 const assetsPath = path.join(__dirname, "Public");
 app.use(express.static(assetsPath));
 
-app.get('/', (req, res) => {
-  res.send('<h1>Hello World</h1>');
-});
+app.use('/', indexRouter);
 
 //Error middleware
 app.use((err, req, res, next) => {
