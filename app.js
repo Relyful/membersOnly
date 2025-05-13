@@ -10,7 +10,7 @@ const app = express();
 //Set-up url request body parsing
 app.use(express.urlencoded({ extended: false }));
 //Set-up EJS
-app.set('views', path.join(__dirname, "Views"));
+app.set('views', path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 //Set-up Public files
 const assetsPath = path.join(__dirname, "Public");
