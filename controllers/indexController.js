@@ -66,4 +66,13 @@ exports.getLogin = (req, res) => {
 exports.postLogin = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "login"
-})
+});
+
+exports.getLogout = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+};
