@@ -36,6 +36,11 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 //Set-up for classic session
 app.use(passport.session());
+//REMOVE LATER JUST TO SEE SESSIONS
+app.use((req, res, next) => {
+  console.log(req.session);
+  next();
+});
 
 //Set-up passport strategy Try to remove try catch block for express v5
 passport.use(

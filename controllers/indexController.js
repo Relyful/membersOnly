@@ -2,6 +2,7 @@ const pool = require("../db/pool");
 const db = require("../db/queries");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 const registerValidation = [
   body("firstName")
@@ -18,7 +19,7 @@ const registerValidation = [
     .trim()
     .notEmpty()
     .isLength({min: 5})
-    .withMessage("Password must be atleast 5 characters!"),
+    .withMessage("Username must be atleast 5 characters!"),
   body('confirmPassword')
     .custom((value, { req }) => {
       return value === req.body.password;
@@ -57,3 +58,12 @@ exports.postRegister = [
     res.redirect('/');
   }
 ];
+
+exports.getLogin = (req, res) => {
+  res.render('loginForm');
+};
+
+exports.postLogin = passport.authenticate("local", {
+  successRedirect: "/",
+  failureRedirect: "login"
+})
