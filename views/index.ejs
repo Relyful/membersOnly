@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  <h1>Relyful's members</h1>
+  <% if (locals.user) { %>
+    <a href="/newMessage">Create new message</a>
+  <%  } %>
+  <div class="content">
+    <% messages.forEach(message => { %>
+      <div class="message">
+        <div class="title"><%= message.title %></div>
+        <div class="text"><%= message.text %></div>
+        <% if (locals.user) { %>
+          <div class="date"><%= message.created_at %></div>
+          <div class="author"><%= message.created_by %></div>
+        <% } %>
+      </div>
+    <% }); %>
+  </div>
+</body>
+</html>

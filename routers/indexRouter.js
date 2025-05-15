@@ -9,5 +9,7 @@ indexRouter.post('/register', indexController.postRegister);
 indexRouter.get('/login', indexController.getLogin);
 indexRouter.post('/login', indexController.postLogin);
 indexRouter.get('/logout', indexController.getLogout);
+indexRouter.get('/newMessage', indexController.getNewMessage);
+indexRouter.post('/newMessage', indexController.postNewMessage);
 
 module.exports = indexRouter;

@@ -32,8 +32,13 @@ const registerValidation = [
     .withMessage('Password must be atleast 5 characters long.'),
 ]
 
-exports.getIndex = (req, res) => {
-  res.send('<h1>Hello World</h1>');
+exports.getIndex = async (req, res) => {
+  const { rows } = await pool.query("SELECT * FROM messages");
+  console.log(rows);
+  res.render("index", {
+    user: req.user,
+    messages: rows
+  });
 };
 
 exports.getRegister = (req, res) => {
@@ -76,3 +81,15 @@ exports.getLogout = (req, res) => {
     res.redirect("/");
   });
 };
+
+exports.getNewMessage = (req, res) => {
+  res.render('newMessageForm');
+};
+
+exports.postNewMessage = async (req, res) => {
+  const messageData = req.body;
+  const user = req.user;
+  await pool.query(`INSERT INTO messages (title, text, created_by)
+    VALUES ($1, $2, $3)`, [messageData.title, messageData.text, user.id]);
+  res.redirect('/');
+}
