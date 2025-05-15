@@ -39,6 +39,7 @@ app.use(passport.session());
 //REMOVE LATER JUST TO SEE SESSIONS
 app.use((req, res, next) => {
   console.log(req.session);
+  console.log(req.user);
   next();
 });
 
