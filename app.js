@@ -42,16 +42,14 @@ app.use((req, res, next) => {
   next();
 });
 
-//Set-up passport strategy Try to remove try catch block for express v5
+//Set-up passport strategy
 passport.use(
   new LocalStrategy(async (username, password, done) => {
-    try {
       const { rows } = await pool.query(
         "SELECT * FROM users WHERE username = $1",
         [username]
       );
       const user = rows[0];
-
       if (!user) {
         return done(null, false, { message: "Incorrect username" });
       }
@@ -61,9 +59,6 @@ passport.use(
         return done(null, false, { message: "Incorrect password" });
       }
       return done(null, user);
-    } catch (err) {
-      return done(err);
-    }
   })
 );
 
@@ -72,14 +67,9 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => { //try to remove try catch block for new express
-  try {
     const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
     const user = rows[0];
-
     done(null, user);
-  } catch (err) {
-    done(err);
-  }
 });
 
 app.use('/', indexRouter);
