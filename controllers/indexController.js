@@ -33,10 +33,10 @@ const registerValidation = [
 ]
 
 exports.getIndex = async (req, res) => {
-  const { rows } = await pool.query("SELECT * FROM messages");
+  const messages = await db.getAllMessages();
   res.render("index", {
     user: req.user,
-    messages: rows
+    messages: messages
   });
 };
 
@@ -58,7 +58,7 @@ exports.postRegister = [
       return;
     };
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    await pool.query(`INSERT INTO users (fname, sname, username, password) VALUES ($1, $2, $3, $4)`, [data.firstName, data.secondName, data.username, hashedPassword]);
+    await db.inserNewUser(data, hashedPassword);
     res.redirect('/');
   }
 ];
@@ -88,8 +88,7 @@ exports.getNewMessage = (req, res) => {
 exports.postNewMessage = async (req, res) => {
   const messageData = req.body;
   const user = req.user;
-  await pool.query(`INSERT INTO messages (title, text, created_by)
-    VALUES ($1, $2, $3)`, [messageData.title, messageData.text, user.id]);
+  await db.insertNewMessage(messageData, user);
   res.redirect('/');
 };
 
@@ -97,11 +96,11 @@ exports.getclubMemberForm = (req, res) => {
   res.render('clubMemberForm');
 };
 
-exports.postClubMemberForm = (req, res) => {
+exports.postClubMemberForm = async (req, res) => {
   const password = req.body.secretPass;
   const userID = req.user.id;
   if (password === "odinP") {
-    pool.query(`UPDATE users SET mem_status = $1 WHERE id = $2`, ['t', userID]);
+    await db.setMemTrue(userID);
     res.redirect('/');
   }
   res.redirect('/clubForm');
