@@ -15,7 +15,7 @@
       <div class="message">
         <div class="title"><%= message.title %></div>
         <div class="text"><%= message.text %></div>
-        <% if (locals.user) { %>
+        <% if (user && user.mem_status) { %>
           <div class="date"><%= message.created_at %></div>
           <div class="author"><%= message.created_by %></div>
         <% } %>
