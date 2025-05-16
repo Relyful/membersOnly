@@ -11,5 +11,7 @@ indexRouter.post('/login', indexController.postLogin);
 indexRouter.get('/logout', indexController.getLogout);
 indexRouter.get('/newMessage', indexController.getNewMessage);
 indexRouter.post('/newMessage', indexController.postNewMessage);
+indexRouter.get('/clubForm', indexController.getclubMemberForm);
+indexRouter.post('/clubForm', indexController.postClubMemberForm);
 
 module.exports = indexRouter;

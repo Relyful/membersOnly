@@ -34,7 +34,6 @@ const registerValidation = [
 
 exports.getIndex = async (req, res) => {
   const { rows } = await pool.query("SELECT * FROM messages");
-  console.log(rows);
   res.render("index", {
     user: req.user,
     messages: rows
@@ -92,4 +91,18 @@ exports.postNewMessage = async (req, res) => {
   await pool.query(`INSERT INTO messages (title, text, created_by)
     VALUES ($1, $2, $3)`, [messageData.title, messageData.text, user.id]);
   res.redirect('/');
-}
+};
+
+exports.getclubMemberForm = (req, res) => {
+  res.render('clubMemberForm');
+};
+
+exports.postClubMemberForm = (req, res) => {
+  const password = req.body.secretPass;
+  const userID = req.user.id;
+  if (password === "odinP") {
+    pool.query(`UPDATE users SET mem_status = $1 WHERE id = $2`, ['t', userID]);
+    res.redirect('/');
+  }
+  res.redirect('/clubForm');
+};
