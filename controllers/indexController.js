@@ -111,3 +111,9 @@ exports.postClubMemberForm = async (req, res) => {
   }
   res.redirect('/clubForm');
 };
+
+exports.getDeleteMessage = async (req, res) => {
+  const id = req.params.messageId;
+  await db.deleteMessage(id);
+  res.redirect('/');
+}

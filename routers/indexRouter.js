@@ -14,5 +14,6 @@ indexRouter.get('/newMessage', authMiddleware, indexController.getNewMessage);
 indexRouter.post('/newMessage', authMiddleware, indexController.postNewMessage);
 indexRouter.get('/clubForm', authMiddleware, indexController.getclubMemberForm);
 indexRouter.post('/clubForm', authMiddleware, indexController.postClubMemberForm);
+indexRouter.get('/deleteMessage/:messageId', indexController.getDeleteMessage);
 
 module.exports = indexRouter;

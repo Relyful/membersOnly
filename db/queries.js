@@ -21,12 +21,17 @@ async function getAllMessages() {
 
 async function setAdmin(userID) {
   await pool.query(`UPDATE users SET admin_status = TRUE, mem_status = TRUE WHERE id = $1`, [userID]);
-}
+};
+
+async function deleteMessage(messageID) {
+  await pool.query(`DELETE FROM messages WHERE id = $1`, [messageID]);
+};
 
 module.exports = {
   setMemTrue,
   insertNewMessage,
   inserNewUser,
   getAllMessages,
-  setAdmin
+  setAdmin,
+  deleteMessage
 }
