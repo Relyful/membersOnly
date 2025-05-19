@@ -4,6 +4,8 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
+require('dotenv').config()
+
 const registerValidation = [
   body("firstName")
     .trim()
@@ -99,7 +101,7 @@ exports.getclubMemberForm = (req, res) => {
 exports.postClubMemberForm = async (req, res) => {
   const password = req.body.secretPass;
   const userID = req.user.id;
-  if (password === "odinP") {
+  if (password === process.env.MEMBER_PASSWORD) {
     await db.setMemTrue(userID);
     res.redirect('/');
   }
