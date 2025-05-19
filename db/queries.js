@@ -10,18 +10,23 @@ async function insertNewMessage(messageData, user) {
 };
 
 async function inserNewUser(data, hashedPassword) {
-  await pool.query(`INSERT INTO users (fname, sname, username, password) 
-    VALUES ($1, $2, $3, $4)`, [data.firstName, data.secondName, data.username, hashedPassword]);
+  return await pool.query(`INSERT INTO users (fname, sname, username, password) 
+    VALUES ($1, $2, $3, $4) RETURNING id`, [data.firstName, data.secondName, data.username, hashedPassword]);
 };
 
 async function getAllMessages() {
   const { rows } = await pool.query("SELECT * FROM messages");
   return rows;
+};
+
+async function setAdmin(userID) {
+  await pool.query(`UPDATE users SET admin_status = TRUE WHERE id = $1`, [userID])
 }
 
 module.exports = {
   setMemTrue,
   insertNewMessage,
   inserNewUser,
-  getAllMessages
+  getAllMessages,
+  setAdmin
 }

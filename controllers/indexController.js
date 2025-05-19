@@ -16,7 +16,7 @@ const registerValidation = [
     .trim()
     .notEmpty()
     .isAscii()
-    .withMessage('Secoond Name must contain valid ASCII characters.'),
+    .withMessage('Second Name must contain valid ASCII characters.'),
     body('username')
     .trim()
     .notEmpty()
@@ -60,7 +60,11 @@ exports.postRegister = [
       return;
     };
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    await db.inserNewUser(data, hashedPassword);
+    let result = await db.inserNewUser(data, hashedPassword);
+    if (data.admin) {
+      const newUserID = result.rows[0].id;
+      await db.setAdmin(newUserID);
+    };
     res.redirect('/');
   }
 ];
