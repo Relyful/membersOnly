@@ -20,7 +20,7 @@ async function getAllMessages() {
 };
 
 async function setAdmin(userID) {
-  await pool.query(`UPDATE users SET admin_status = TRUE WHERE id = $1`, [userID])
+  await pool.query(`UPDATE users SET admin_status = TRUE, mem_status = TRUE WHERE id = $1`, [userID]);
 }
 
 module.exports = {
