@@ -66,7 +66,7 @@ exports.postRegister = [
         const newUserID = result.rows[0].id;
         await db.setAdmin(newUserID);
       }
-      res.redirect('/');
+      res.redirect('/login');
     } catch (err) {
       if (err.code && err.code === "23505") {
         return res.status(400).render('registerForm', {
@@ -83,17 +83,29 @@ exports.getLogin = (req, res) => {
   res.render('loginForm');
 };
 
-exports.postLogin = passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "login"
-});
+exports.postLogin = (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.status(401).render('loginForm', {
+        error: info.message,
+      });
+    }
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      return res.redirect('/');
+    });
+  })(req, res, next);
+};
 
 exports.getLogout = (req, res) => {
   req.logout((err) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    res.redirect("/login");
   });
 };
 
@@ -117,9 +129,11 @@ exports.postClubMemberForm = async (req, res) => {
   const userID = req.user.id;
   if (password === process.env.MEMBER_PASSWORD) {
     await db.setMemTrue(userID);
-    res.redirect('/');
+    return res.redirect('/');
   }
-  res.redirect('/clubForm');
+  return res.render('clubMemberForm', {
+    errors: "Wrong club password!"
+  });
 };
 
 exports.getDeleteMessage = async (req, res) => {

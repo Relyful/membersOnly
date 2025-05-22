@@ -7,6 +7,9 @@
 </head>
 <body>
   <h2>Become a member</h2>
+  <% if (locals.errors) { %>
+    <div class="error"><%= errors %></div>
+  <% } %>
   <div class="content">
     <form action="/clubForm" method="post">
       <label for="secretPass">Secret password: </label>

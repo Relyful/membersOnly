@@ -8,12 +8,9 @@
 <body>
   <h2>Register at Relymembers</h2>
   <% if (locals.errors) { %>
-    <ul>
-    <% console.log(errors) %>
     <% errors.forEach((error) => {%>
-      <li><%= error.msg %></li>
+      <div class="error"><%= error.msg %></div>
     <% }) %>
-    </ul>
   <% } %>
   <form action="/register" method="post" onsubmit="this.submit(); this.reset(); return false;">
     <div class="formRow">
