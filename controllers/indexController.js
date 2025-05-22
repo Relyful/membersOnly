@@ -80,6 +80,11 @@ exports.postRegister = [
 ];
 
 exports.getLogin = (req, res) => {
+  if (req.user) {
+    return res.render('loginForm', {
+      loggedIn: true,
+    })
+  }
   res.render('loginForm');
 };
 
