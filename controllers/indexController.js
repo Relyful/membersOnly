@@ -48,24 +48,34 @@ exports.getRegister = (req, res) => {
 
 exports.postRegister = [
   registerValidation,
-  async (req, res) => {
+  async (req, res, next) => {
     console.log(req.body);
     const data = req.body;
     const errors = validationResult(req);
-    console.log(errors);
     if (!errors.isEmpty()) {
       res.status(400).render('registerForm', {
-        errors: null,
+        errors: errors.errors,
       })
       return;
     };
     const hashedPassword = await bcrypt.hash(data.password, 10);
-    let result = await db.inserNewUser(data, hashedPassword);
-    if (data.admin) {
-      const newUserID = result.rows[0].id;
-      await db.setAdmin(newUserID);
-    };
-    res.redirect('/');
+
+    try {
+      let result = await db.inserNewUser(data, hashedPassword);
+      if (data.admin) {
+        const newUserID = result.rows[0].id;
+        await db.setAdmin(newUserID);
+      }
+      res.redirect('/');
+    } catch (err) {
+      if (err.code && err.code === "23505") {
+        return res.status(400).render('registerForm', {
+          errors: [{msg: "Username already exists."}],
+        });
+      }
+      return next(err);
+    }
+    
   }
 ];
 
