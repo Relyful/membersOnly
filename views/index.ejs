@@ -26,7 +26,7 @@
         <div class="text"><%= message.text %></div>
         <% if (user && user.mem_status) { %>
           <div class="date"><%= message.created_at %></div>
-          <div class="author"><%= message.username %></div>
+          <div class="author"><div class="authorMessage">Message by: </div><%= message.username %></div>
         <% } %>
       </div>
     <% }); %>
