@@ -11,3 +11,15 @@ header {
   display: flex;
   gap: 20px;
 }
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message {
+  width: 60%;
+  margin: auto;
+  margin-top: 40px;
+}
