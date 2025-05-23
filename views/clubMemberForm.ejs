@@ -4,8 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Become a member</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <%- include('partials/header') %>
   <h2>Become a member</h2>
   <% if (locals.errors) { %>
     <div class="error"><%= errors %></div>

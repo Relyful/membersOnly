@@ -16,7 +16,6 @@ async function inserNewUser(data, hashedPassword) {
 
 async function getAllMessages() {
   const { rows } = await pool.query("SELECT messages.*, users.username FROM messages LEFT JOIN users ON messages.created_by = users.id");
-  console.log(rows);  
   return rows;
 };
 

@@ -1,0 +1,16 @@
+<header>
+  <h1>Relyful's club</h1>
+  <ul class="links">
+    <a href="/">
+      <li>Home</li>
+    </a>
+    <% if (!locals.loggedIn) { %>
+      <a href="/register">
+        <li>Register</li>
+      </a>
+      <a href="/login">
+        <li>Log In</li>
+      </a>
+    <% } %>    
+  </ul>
+</header>
