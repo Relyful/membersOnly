@@ -28,7 +28,7 @@ header {
   display: inline;
 }
 
-#registerForm {
+#registerForm, #loginForm {
   display: flex;
   flex-direction: column;
   padding: 0 50px 0 50px;

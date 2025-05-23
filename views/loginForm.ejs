@@ -15,20 +15,24 @@
       <a href="/logout"><button>Logout</button></a>
     </div>
   <% } else { %>
-  <% if (locals.error) { %>
-    <div class="error"><%= error %></div>
-  <% } %>
-  <form action="/login" method="post">
-    <div class="formRow">
-      <label for="username">Username: </label>
-      <input type="text" name="username" id="username ">
+  <div class="content">
+    <div class="errors">
+      <% if (locals.error) { %>
+        <div class="error"><%= error %></div>
+      <% } %>
     </div>
-    <div class="formRow">
-      <label for="password">Password: </label>
-      <input type="password" name="password" id="password">
-    </div>
-    <button type="submit">Login</button>
-  </form>
-  <% } %>
+    <form action="/login" id="loginForm" method="post">
+      <div class="formRow">
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username ">
+      </div>
+      <div class="formRow">
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password">
+      </div>
+      <button type="submit">Login</button>
+    </form>
+    <% } %>
+  </div>
 </body>
 </html>
