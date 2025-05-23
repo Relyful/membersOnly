@@ -18,6 +18,12 @@ header {
   justify-content: space-between;
 }
 
+.memberInfo {
+  text-align: center;
+  font-size: smaller;
+  color: rgb(51, 51, 51);
+}
+
 .message {
   width: 60%;
   margin: auto;
@@ -28,7 +34,7 @@ header {
   display: inline;
 }
 
-#registerForm, #loginForm {
+#registerForm, #loginForm, #clubForm {
   display: flex;
   flex-direction: column;
   padding: 0 50px 0 50px;

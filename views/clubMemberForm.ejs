@@ -8,14 +8,16 @@
 </head>
 <body>
   <%- include('partials/header') %>
-  <h2>Become a member</h2>
-  <% if (locals.errors) { %>
-    <div class="error"><%= errors %></div>
-  <% } %>
   <div class="content">
-    <form action="/clubForm" method="post">
-      <label for="secretPass">Secret password: </label>
-      <input type="text" name="secretPass" id="secretPass">
+    <h2>Become a member</h2>
+    <% if (locals.errors) { %>
+      <div class="error"><%= errors %></div>
+    <% } %>
+    <form action="/clubForm" id="clubForm" method="post">
+      <div class="formRow">
+        <label for="secretPass">Secret password: </label>
+        <input type="text" name="secretPass" id="secretPass">
+      </div>
       <button type="submit">Submit</button>
     </form>
   </div>
