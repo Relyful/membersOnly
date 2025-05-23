@@ -38,12 +38,15 @@ exports.getIndex = async (req, res) => {
   const messages = await db.getAllMessages();
   res.render("index", {
     user: req.user,
-    messages: messages
+    messages: messages,
+    loggedIn: req.isAuthenticated()
   });
 };
 
 exports.getRegister = (req, res) => {
-  res.render('registerForm');
+  res.render('registerForm', {
+    loggedIn: req.isAuthenticated()
+  });
 };
 
 exports.postRegister = [
@@ -80,12 +83,9 @@ exports.postRegister = [
 ];
 
 exports.getLogin = (req, res) => {
-  if (req.user) {
-    return res.render('loginForm', {
-      loggedIn: true,
-    })
-  }
-  res.render('loginForm');
+  res.render('loginForm', {
+    loggedIn: req.isAuthenticated()
+  });
 };
 
 exports.postLogin = (req, res, next) => {
@@ -115,7 +115,9 @@ exports.getLogout = (req, res) => {
 };
 
 exports.getNewMessage = (req, res) => {
-  res.render('newMessageForm');
+  res.render('newMessageForm'), {
+    loggedIn: req.isAuthenticated()
+  };
 };
 
 exports.postNewMessage = async (req, res) => {
@@ -126,7 +128,9 @@ exports.postNewMessage = async (req, res) => {
 };
 
 exports.getclubMemberForm = (req, res) => {
-  res.render('clubMemberForm');
+  res.render('clubMemberForm', {
+    loggedIn: req.isAuthenticated()
+  });
 };
 
 exports.postClubMemberForm = async (req, res) => {
