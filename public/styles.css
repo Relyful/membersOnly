@@ -27,3 +27,21 @@ header {
 .authorMessage {
   display: inline;
 }
+
+#registerForm {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px 0 50px;
+  align-items: center;
+}
+
+.formRow {
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.errors {
+  padding-left: 20px;
+  color: red;
+}
