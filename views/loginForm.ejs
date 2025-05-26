@@ -8,31 +8,29 @@
 </head>
 <body>
   <%- include('partials/header') %>
-  <h2>Log in</h2>
-  <% if (locals.loggedIn) { %>
-    <div class="content">
-      <p>You're already logged in, you need to log out first!</p>
-      <a href="/logout"><button>Logout</button></a>
-    </div>
-  <% } else { %>
   <div class="content">
-    <div class="errors">
-      <% if (locals.error) { %>
-        <div class="error"><%= error %></div>
+    <h2>Log in</h2>
+    <% if (locals.loggedIn) { %>
+        <p>You're already logged in, you need to log out first!</p>
+        <a href="/logout"><button>Logout</button></a>
+    <% } else { %>
+      <div class="errors">
+        <% if (locals.error) { %>
+          <div class="error"><%= error %></div>
+        <% } %>
+      </div>
+      <form action="/login" id="loginForm" method="post">
+        <div class="formRow">
+          <label for="username">Username: </label>
+          <input type="text" name="username" id="username ">
+        </div>
+        <div class="formRow">
+          <label for="password">Password: </label>
+          <input type="password" name="password" id="password">
+        </div>
+        <button type="submit">Login</button>
+      </form>
       <% } %>
-    </div>
-    <form action="/login" id="loginForm" method="post">
-      <div class="formRow">
-        <label for="username">Username: </label>
-        <input type="text" name="username" id="username ">
-      </div>
-      <div class="formRow">
-        <label for="password">Password: </label>
-        <input type="password" name="password" id="password">
-      </div>
-      <button type="submit">Login</button>
-    </form>
-    <% } %>
   </div>
 </body>
 </html>
