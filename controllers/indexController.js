@@ -55,7 +55,8 @@ exports.getIndex = async (req, res) => {
 
 exports.getRegister = (req, res) => {
   res.render('registerForm', {
-    loggedIn: req.isAuthenticated()
+    loggedIn: req.isAuthenticated(),
+    user: req.user,
   });
 };
 
@@ -68,7 +69,8 @@ exports.postRegister = [
     if (!errors.isEmpty()) {
       res.status(400).render('registerForm', {
         errors: errors.errors,
-        loggedIn: req.isAuthenticated()
+        loggedIn: req.isAuthenticated(),
+        user: req.user,
       })
       return;
     };
@@ -85,7 +87,8 @@ exports.postRegister = [
       if (err.code && err.code === "23505") {
         return res.status(400).render('registerForm', {
           errors: [{msg: "Username already exists."}],
-          loggedIn: req.isAuthenticated()
+          loggedIn: req.isAuthenticated(),
+          user: req.user,
         });
       }
       return next(err);
@@ -96,7 +99,8 @@ exports.postRegister = [
 
 exports.getLogin = (req, res) => {
   res.render('loginForm', {
-    loggedIn: req.isAuthenticated()
+    loggedIn: req.isAuthenticated(),
+    user: req.user,
   });
 };
 
@@ -108,7 +112,8 @@ exports.postLogin = (req, res, next) => {
     if (!user) {
       return res.status(401).render('loginForm', {
         error: info.message,
-        loggedIn: req.isAuthenticated()
+        loggedIn: req.isAuthenticated(),
+        user: req.user,
       });
     }
     req.logIn(user, (err) => {
@@ -129,7 +134,8 @@ exports.getLogout = (req, res) => {
 
 exports.getNewMessage = (req, res) => {
   res.render('newMessageForm', {
-    loggedIn: req.isAuthenticated()
+    loggedIn: req.isAuthenticated(),
+    user: req.user,
   });
 };
 
@@ -142,7 +148,8 @@ exports.postNewMessage = async (req, res) => {
 
 exports.getclubMemberForm = (req, res) => {
   res.render('clubMemberForm', {
-    loggedIn: req.isAuthenticated()
+    loggedIn: req.isAuthenticated(),
+    user: req.user,
   });
 };
 
@@ -154,7 +161,8 @@ exports.postClubMemberForm = async (req, res) => {
     return res.redirect('/');
   }
   return res.render('clubMemberForm', {
-    errors: "Wrong club password!"
+    errors: "Wrong club password!",
+    user: req.user,
   });
 };
 

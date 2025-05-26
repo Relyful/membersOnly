@@ -133,7 +133,7 @@ h2 {
 
 .message {
   width: 60%;
-  max-width: 500px;
+  max-width: 550px;
   min-width: 350px;
   margin: auto;
   margin-top: 40px;
@@ -201,4 +201,11 @@ form button {
 
 .text {
   font-size: 1.1em;
+  padding-bottom: 0.4em;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10em;
 }

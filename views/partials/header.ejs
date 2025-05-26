@@ -1,21 +1,17 @@
 <header>
   <h1>Relyful's club</h1>
-  <ul class="links">
-    <a href="/">
-      <li>Home</li>
-    </a>
-    <% if (!loggedIn) { %>
-      <a href="/register">
-        <li>Register</li>
-      </a>
-      <a href="/login">
-        <li>Log In</li>
-      </a>
-    <% } %>   
-    <% if (loggedIn) { %>
-     <a href="/logout">
-      <li>Log out</li>
-     </a>
-    <% } %> 
-  </ul>
+  <div class="header-right">
+    <% if (user) { %>
+      <div class="user">Current user: <%= user.username %></div>
+    <% } %>
+    <ul class="links">
+      <li><a href="/">Home</a></li>
+      <% if (!loggedIn) { %>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Log In</a></li>
+      <% } else { %>
+        <li><a href="/logout">Log out</a></li>
+      <% } %>
+    </ul>
+  </div>
 </header>
