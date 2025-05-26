@@ -16,7 +16,7 @@
       <%  } %>
     </div>
     <% if (!user) { %>
-     <p class="memberInfo"><a href="/register">Register</a> now to send messages!</p>
+     <p class="memberInfo"><a href="/register">Register</a> now or <a href="/login">Log in</a> to send messages!</p>
     <% } %>
     <% if (user && !user.mem_status) { %>     
       <p class="memberInfo">You can become a member and see who posted these messages and when! <a href="/clubForm">Become member NOW!</a></p>

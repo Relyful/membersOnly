@@ -138,7 +138,7 @@ h2 {
   margin: auto;
   margin-top: 40px;
   padding: 1em;
-  border: 1px solid black;
+  border: 1px solid rgb(0, 0, 0);
   border-radius: 1.2em;
 }
 
@@ -202,10 +202,17 @@ form button {
 .text {
   font-size: 1.1em;
   padding-bottom: 0.4em;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .header-right {
   display: flex;
   align-items: center;
   gap: 10em;
+}
+
+#text {
+  resize: none;
 }
