@@ -10,11 +10,11 @@
   <%- include('partials/header') %>
   <div class="content">
     <h2>Create a new message</h2>
-    <form action="/newMessage" method="post" id="messageForm" maxlength="255">
+    <form action="/newMessage" method="post" id="messageForm">
       <label for="title">Title: </label>
-      <input type="text" name="title" id="title" required>
+      <input type="text" name="title" id="title" maxlength="55" required>
       <label for="text">Message: </label>
-      <textarea name="text" id="text" cols="30" rows="5" required></textarea>
+      <textarea name="text" id="text" cols="30" rows="5" maxlength="255" required></textarea>
       <button type="submit">Submit</button>
     </form>
   </div>

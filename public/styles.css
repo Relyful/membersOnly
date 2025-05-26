@@ -210,7 +210,7 @@ form button {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 10em;
+  gap: 5em;
 }
 
 #text {
