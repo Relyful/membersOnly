@@ -15,8 +15,11 @@
         <a href="/newMessage">Create new message</a>
       <%  } %>
     </div>
+    <% if (!user) { %>
+     <p class="memberInfo"><a href="/register">Register</a> now to send messages!</p>
+    <% } %>
     <% if (user && !user.mem_status) { %>     
-      <p class="memberInfo">(You can become a member and see who posted these messages and when! <a href="/clubForm">Become member NOW!)</a></p>
+      <p class="memberInfo">You can become a member and see who posted these messages and when! <a href="/clubForm">Become member NOW!</a></p>
     <% } %>
     <% messages.forEach(message => { %>
       <div class="message">
