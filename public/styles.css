@@ -79,7 +79,7 @@ textarea:not([rows]) {
 /* CUSTOM CSS HERE */
 
 body {
-  margin: 0 250px 0 250px;
+  /* margin: 0 250px 0 250px; */
   font-family: 'Tomorrow', monospace, serif;
 }
 
@@ -87,7 +87,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 3vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  background-color: #736ced;
+  padding-left: 250px;
+  padding-right: 250px;
 }
 
 h1 {
@@ -100,6 +104,10 @@ h1 {
   list-style: none;
   font-weight: bold;
   font-size: 1.2em;
+}
+
+.row {
+  display: flex;
 }
 
 .links a {
@@ -122,6 +130,15 @@ h1 {
   width: 60%;
   margin: auto;
   margin-top: 40px;
+  padding: 1em;
+  border: 1px solid black;
+  border-radius: 1.2em;
+}
+
+.title {
+  font-size: 1.2em;
+  color: #9f9fed;
+  font-weight: bold;
 }
 
 .authorMessage {
@@ -148,4 +165,10 @@ h1 {
 
 .content {
   padding-top: 3rem;
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.hidden {
+  filter: blur(0.2rem);
 }

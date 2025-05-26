@@ -30,10 +30,11 @@
           <% } %>
         </div>
         <div class="text"><%= message.text %></div>
-        <% if (user && user.mem_status) { %>
-          <div class="date"><%= message.created_at %></div>
-          <div class="author"><div class="authorMessage">Message by: </div><%= message.username %></div>
-        <% } %>
+        <div class="date <%= !(user && user.mem_status) ? 'hidden' : '' %>"><%= user && user.mem_status ? message.created_at : `hidden` %></div>
+        <div class="row">
+          <div class="authorMessage">Message by:&nbsp&nbsp</div>
+          <div class="author <%= !(user && user.mem_status) ? 'hidden' : '' %>"><%= user && user.mem_status ? message.username : `hidden` %></div>
+        </div>
       </div>
     <% }); %>
   </div>
