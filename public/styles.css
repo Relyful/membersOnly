@@ -143,7 +143,7 @@ h2 {
 }
 
 .title {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #9f9fed;
   font-weight: bold;
 }
@@ -193,4 +193,12 @@ form button {
 
 .hidden {
   filter: blur(0.2rem);
+}
+
+.date, .authorMessage, .author {
+  font-size: 0.9em;
+}
+
+.text {
+  font-size: 1.1em;
 }
