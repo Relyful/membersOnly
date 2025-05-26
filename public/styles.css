@@ -79,7 +79,6 @@ textarea:not([rows]) {
 /* CUSTOM CSS HERE */
 
 body {
-  /* margin: 0 250px 0 250px; */
   font-family: 'Tomorrow', monospace, serif;
 }
 
@@ -96,6 +95,11 @@ header {
 
 h1 {
   font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 1.7em;
+  padding-bottom: 1em;
 }
 
 .links {
@@ -124,10 +128,13 @@ h1 {
   text-align: center;
   font-size: 0.9em;
   color: rgb(51, 51, 51);
+  margin-top: 1rem;
 }
 
 .message {
   width: 60%;
+  max-width: 500px;
+  min-width: 350px;
   margin: auto;
   margin-top: 40px;
   padding: 1em;
@@ -141,19 +148,34 @@ h1 {
   font-weight: bold;
 }
 
+.deleteButton {
+  color:#ff7477
+}
+
 .authorMessage {
   display: inline;
 }
 
-#registerForm, #loginForm, #clubForm {
+#registerForm, #loginForm, #clubForm, #messageForm {
   display: flex;
   flex-direction: column;
   padding: 0 50px 0 50px;
   align-items: center;
+  gap: 0.5em;
+}
+
+input, textarea {
+  border-radius: 4px;
+  border: 1px solid #808080;
+  padding: 0.2em;
+}
+
+form button {
+  padding: 0.4em;
 }
 
 .formRow {
-  width: 500px;
+  width: 400px;
   display: flex;
   justify-content: space-between;
 }

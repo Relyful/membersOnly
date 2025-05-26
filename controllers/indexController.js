@@ -68,6 +68,7 @@ exports.postRegister = [
     if (!errors.isEmpty()) {
       res.status(400).render('registerForm', {
         errors: errors.errors,
+        loggedIn: req.isAuthenticated()
       })
       return;
     };
@@ -84,6 +85,7 @@ exports.postRegister = [
       if (err.code && err.code === "23505") {
         return res.status(400).render('registerForm', {
           errors: [{msg: "Username already exists."}],
+          loggedIn: req.isAuthenticated()
         });
       }
       return next(err);
@@ -106,6 +108,7 @@ exports.postLogin = (req, res, next) => {
     if (!user) {
       return res.status(401).render('loginForm', {
         error: info.message,
+        loggedIn: req.isAuthenticated()
       });
     }
     req.logIn(user, (err) => {
@@ -125,9 +128,9 @@ exports.getLogout = (req, res) => {
 };
 
 exports.getNewMessage = (req, res) => {
-  res.render('newMessageForm'), {
+  res.render('newMessageForm', {
     loggedIn: req.isAuthenticated()
-  };
+  });
 };
 
 exports.postNewMessage = async (req, res) => {

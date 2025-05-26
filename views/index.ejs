@@ -26,7 +26,7 @@
         <div class="topRow">
           <div class="title"><%= message.title %></div>
           <% if (user && user.admin_status) { %>
-            <a href="/deleteMessage/<%= message.id %>"><button type="button">!Delete message!</button></a>
+            <a href="/deleteMessage/<%= message.id %>"><button class="deleteButton"type="button">!Delete message!</button></a>
           <% } %>
         </div>
         <div class="text"><%= message.text %></div>
