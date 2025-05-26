@@ -4,13 +4,18 @@
     <a href="/">
       <li>Home</li>
     </a>
-    <% if (!locals.loggedIn) { %>
+    <% if (!loggedIn) { %>
       <a href="/register">
         <li>Register</li>
       </a>
       <a href="/login">
         <li>Log In</li>
       </a>
-    <% } %>    
+    <% } %>   
+    <% if (loggedIn) { %>
+     <a href="/logout">
+      <li>Log out</li>
+     </a>
+    <% } %> 
   </ul>
 </header>
