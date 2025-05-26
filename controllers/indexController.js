@@ -36,6 +36,16 @@ const registerValidation = [
 
 exports.getIndex = async (req, res) => {
   const messages = await db.getAllMessages();
+  console.log(messages);
+  messages.forEach(msg => {
+    msg.formattedDate = msg.created_at.toLocaleString('en-GB', {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    })
+  })
   res.render("index", {
     user: req.user,
     messages: messages,
