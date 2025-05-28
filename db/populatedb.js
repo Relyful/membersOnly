@@ -9,7 +9,7 @@ const SQL = `CREATE TABLE IF NOT EXISTS users (
   sname VARCHAR(80),
   username VARCHAR(80) UNIQUE,
   password VARCHAR(255),
-  mem_status BOOLEAN DEFAULT FALSE
+  mem_status BOOLEAN DEFAULT FALSE,
   admin_status BOOLEAN DEFAULT FALSE
 );
 
@@ -35,7 +35,7 @@ CREATE INDEX "IDX_session_expire" ON "session" ("expire");
 
 INSERT INTO users (fname, sname, username, password)
 VALUES ('123', '123', 'Fake_User', '111111'),
-('111', '1111, 'NotRealUser', '1351354');
+('111', '1111', 'NotRealUser', '1351354');
 
 INSERT INTO messages (title, text, created_by)
 VALUES ('Very message', 'WTHELLY', 1),
@@ -45,7 +45,7 @@ VALUES ('Very message', 'WTHELLY', 1),
 async function main() {
   console.log('Seeding...');
   const client = new Client({
-    connectionString: `postgresql://${process.env.USER}:${process.env.PASSWORD}@${process.env.HOST}:${process.env.DBPORT}/${process.env.DATABASE}`,
+    connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:${process.env.PGPORT}/${process.env.PGDATABASE}`,
   });
   await client.connect();
   await client.query(SQL);
