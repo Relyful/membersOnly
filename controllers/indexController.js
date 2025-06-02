@@ -10,16 +10,19 @@ const registerValidation = [
   body("firstName")
     .trim()
     .notEmpty()
+    .withMessage('First Name can not be empty.')
     .isAscii()
     .withMessage('First Name must contain valid ASCII characters.'),
   body("secondName")
     .trim()
     .notEmpty()
+    .withMessage('Second Name can not be empty.')
     .isAscii()
     .withMessage('Second Name must contain valid ASCII characters.'),
     body('username')
     .trim()
     .notEmpty()
+    .withMessage('Username can not be empty.')
     .isLength({min: 5})
     .withMessage("Username must be atleast 5 characters!"),
   body('confirmPassword')
@@ -30,13 +33,13 @@ const registerValidation = [
   body('password')
     .trim()
     .notEmpty()
+    .withMessage('Password can not be empty.')
     .isLength({min: 5})
     .withMessage('Password must be atleast 5 characters long.'),
 ]
 
 exports.getIndex = async (req, res) => {
   const messages = await db.getAllMessages();
-  console.log(messages);
   messages.forEach(msg => {
     msg.formattedDate = msg.created_at.toLocaleString('en-GB', {
       year: 'numeric',
@@ -63,7 +66,6 @@ exports.getRegister = (req, res) => {
 exports.postRegister = [
   registerValidation,
   async (req, res, next) => {
-    console.log(req.body);
     const data = req.body;
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

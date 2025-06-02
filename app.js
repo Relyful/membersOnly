@@ -36,12 +36,6 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 //Set-up for classic session
 app.use(passport.session());
-//REMOVE LATER JUST TO SEE SESSIONS
-app.use((req, res, next) => {
-  console.log(req.session);
-  console.log(req.user);
-  next();
-});
 
 //Set-up passport strategy
 passport.use(
@@ -74,6 +68,10 @@ passport.deserializeUser(async (id, done) => { //try to remove try catch block f
 });
 
 app.use('/', indexRouter);
+
+app.get('/*splat', async (req, res) => {
+  res.send('You cannot be here :( .')
+})
 
 //Error middleware
 app.use((err, req, res, next) => {
